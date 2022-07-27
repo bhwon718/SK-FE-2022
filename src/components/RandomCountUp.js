@@ -3,3 +3,5 @@ const RandomCountUp = ({ isComplete, count }) => (
     {count}
   </output>
 );
+
+export default RandomCountUp;

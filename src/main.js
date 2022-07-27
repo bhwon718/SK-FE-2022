@@ -1,3 +1,6 @@
+import App from './components/App.js';
+import RandomCountUp from './components/RandomCountUp.js';
+
 const handleReload = () => location.reload();
 document.addEventListener('click', handleReload, { capture: true });
 
