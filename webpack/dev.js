@@ -1,14 +1,14 @@
-const path = require('path');
+const { getAbsPath } = require('./utils');
 
 const devConfig = {
   target: 'web',
   mode: 'development',
   devtool: 'eval-source-map',
   entry: {
-    main: path.resolve(process.cwd(), 'src/index.js'),
+    main: getAbsPath('src/index.js'),
   },
   output: {
-    path: path.resolve(process.cwd(), 'public'),
+    path: getAbsPath('public'),
     filename: 'js/main.js',
   },
   module: {
