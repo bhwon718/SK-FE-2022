@@ -40,11 +40,27 @@ const container = document.getElementById('root');
 // React DOM Root 생성
 const root = ReactDOM.createRoot(container);
 
+// React 컴포넌트(component) - 재사용 (React 요소를 여러 번 사용할 수 있도록 한다.)
+// - 함수형(functional) 타입 - 함수가 React 요소(JSX)를 반환
+function RandomCountUp(props) {
+  return (
+    <output style={props.isComplete ? { animationName: 'none' } : undefined}>
+      {props.count}
+    </output>
+  );
+}
+
+// - 클래스(class) 타입
+
+// 애니메이션 종료 스타일
+// const completedStyle = { animationName: 'none' };
+
 // render 함수
 function render({ count, isComplete = false } = {}) {
-  const completedStyle = { animationName: 'none' };
   root.render(
-    <output style={isComplete ? completedStyle : undefined}>{count}</output>
+    <React.StrictMode>
+      <RandomCountUp count={count} isComplete={isComplete} />
+    </React.StrictMode>
   );
 }
 
@@ -61,7 +77,6 @@ function animate() {
 }
 
 function cleanup() {
-  console.log('클린 업!');
   clearInterval(clearIntervalId);
 }
 
