@@ -42,15 +42,18 @@ const root = ReactDOM.createRoot(container);
 
 // React 컴포넌트(component) - 재사용 (React 요소를 여러 번 사용할 수 있도록 한다.)
 // - 함수형(functional) 타입 - 함수가 React 요소(JSX)를 반환
-function RandomCountUp(props) {
-  return (
-    <output style={props.isComplete ? { animationName: 'none' } : undefined}>
-      {props.count}
-    </output>
-  );
-}
+const RandomCountUp = ({ isComplete, count }) => (
+  <output style={isComplete ? { animationName: 'none' } : undefined}>
+    {count}
+  </output>
+);
 
 // - 클래스(class) 타입
+class App extends React.Component {
+  render() {
+    return <div id="app">{this.props.children}</div>;
+  }
+}
 
 // 애니메이션 종료 스타일
 // const completedStyle = { animationName: 'none' };
@@ -59,7 +62,9 @@ function RandomCountUp(props) {
 function render({ count, isComplete = false } = {}) {
   root.render(
     <React.StrictMode>
-      <RandomCountUp count={count} isComplete={isComplete} />
+      <App>
+        <RandomCountUp count={count} isComplete={isComplete} />
+      </App>
     </React.StrictMode>
   );
 }
